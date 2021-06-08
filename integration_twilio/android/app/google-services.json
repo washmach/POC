@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "992143828892",
+    "project_id": "intregations-pod",
+    "storage_bucket": "intregations-pod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992143828892:android:20cd98cd63f9c917900a59",
+        "android_client_info": {
+          "package_name": "com.example.integration_twilio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992143828892-p91h16qriqs6mj5sn1773ipa6f4imrm8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.integration_twilio",
+            "certificate_hash": "082ac2961ad7c4faf79934e0854cffdba48edaac"
+          }
+        },
+        {
+          "client_id": "992143828892-b2mr50q6ot5ijkagsn0m0r6fkhpkdvtv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA18hS8BNuEHxBPtOM4diHHzquhDRV6W5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992143828892-b2mr50q6ot5ijkagsn0m0r6fkhpkdvtv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
