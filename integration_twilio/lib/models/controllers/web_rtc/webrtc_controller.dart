@@ -26,7 +26,7 @@ class WebRtcController extends StateNotifier<WebRtcState> {
     String room = '';
 
     final response =
-        await http.get(Uri.parse('http://washmach.somee.com/$user/$room'));
+        await http.get(Uri.parse('http://washmach.somee.com/1018/666'));
     //Constants.twilioTokenEndpoint("1018", "secondroom")
     //final data = json.decode(response.body) as Map<String, dynamic>;
     await TwilioProgrammableVideo.debug(dart: true, native: true);
