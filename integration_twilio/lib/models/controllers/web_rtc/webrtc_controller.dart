@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:integration_twilio/models/controllers/web_rtc/webrtc_state.dart';
 import 'package:integration_twilio/models/entities/webrtc.dart';
@@ -23,15 +22,18 @@ class WebRtcController extends StateNotifier<WebRtcState> {
   final _remoteParticipantSubscriptions = <StreamSubscription>[];
 
   Future<void> initializeWebRtc() async {
-    final response =
-        await http.get(Uri.parse('http://washmach.somee.com/1018/secondroom'));
-    //Constants.twilioTokenEndpoint("1018", "secondroom")
+    String user = '';
+    String room = '';
 
+    final response =
+        await http.get(Uri.parse('http://washmach.somee.com/$user/$room'));
+    //Constants.twilioTokenEndpoint("1018", "secondroom")
+    //final data = json.decode(response.body) as Map<String, dynamic>;
     await TwilioProgrammableVideo.debug(dart: true, native: true);
     await TwilioProgrammableVideo.requestPermissionForCameraAndMicrophone();
     _cameraCapturer = CameraCapturer(CameraSource.FRONT_CAMERA);
     final connectOptions = ConnectOptions(
-      response.toString(),
+      response.body,
       roomName: 'VideoRoom',
       preferredAudioCodecs: [OpusCodec()],
       audioTracks: [LocalAudioTrack(true, 'Aaudiotrck')],
@@ -135,7 +137,7 @@ class WebRtcController extends StateNotifier<WebRtcState> {
       await subscription.cancel();
     }
     await _room?.disconnect();
-    _room = Room(0);
+    _room = null;
     _cameraCapturer = CameraCapturer(CameraSource.FRONT_CAMERA);
   }
 

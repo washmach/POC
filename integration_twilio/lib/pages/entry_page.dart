@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:integration_twilio/models/entities/entities.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:integration_twilio/pages/webrtc_room_page.dart';
-import 'package:integration_twilio/states/state_providers.dart';
-import 'package:integration_twilio/states/user_bloc.dart';
 
-class EntryPage extends StatelessWidget {
-  final UserBloc ubloc = new UserBloc();
+class EntryPage extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Twilio Sample'),
+          title: const Text('Twilio Integration'),
         ),
         body: Center(
           child: Column(
@@ -20,22 +17,10 @@ class EntryPage extends StatelessWidget {
               const Text(
                 'Twilio VideoRoom',
               ),
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).push<MaterialPageRoute>(
-                    MaterialPageRoute(
-                      builder: (context) => WebRtcRoomPage(),
-                    ),
-                  );
-                },
-                color: Theme.of(context).buttonColor,
-                child: const Text('Enter'),
-              ),
               inputUser(),
               inputRoom(),
               FlatButton(
                 onPressed: () {
-                  UserInfo(user: ubloc.userValue, room: ubloc.roomValue);
                   Navigator.of(context).push<MaterialPageRoute>(
                     MaterialPageRoute(
                       builder: (context) => WebRtcRoomPage(),
@@ -53,47 +38,41 @@ class EntryPage extends StatelessWidget {
   }
 
   inputUser() {
-    return StreamBuilder(
-      stream: ubloc.userStream,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return TextFormField(
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(8.0),
-              filled: true,
-              fillColor: Colors.white70,
-              hintText: 'id user'.toUpperCase(),
-              suffixIcon: Icon(Icons.account_circle, color: Colors.grey[600]),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              ),
-            ),
-            onChanged: (value) {
-              ubloc.changeUser(value);
-            });
-      },
-    );
-  }
-
-  inputRoom() {
-    return StreamBuilder(
-      stream: ubloc.roomStream,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return TextFormField(
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: TextFormField(
           style: TextStyle(color: Colors.black),
           decoration: InputDecoration(
             contentPadding: EdgeInsets.all(8.0),
             filled: true,
             fillColor: Colors.white70,
-            hintText: 'room'.toUpperCase(),
+            hintText: 'id user'.toUpperCase(),
             suffixIcon: Icon(Icons.account_circle, color: Colors.grey[600]),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
             ),
           ),
-          onChanged: (value) => ubloc.changeRoom(value),
-        );
-      },
+          onChanged: (value) {}),
+    );
+  }
+
+  inputRoom() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: TextFormField(
+        style: TextStyle(color: Colors.black),
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(8.0),
+          filled: true,
+          fillColor: Colors.white70,
+          hintText: 'room'.toUpperCase(),
+          suffixIcon: Icon(Icons.account_circle, color: Colors.grey[600]),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          ),
+        ),
+        onChanged: (value) {},
+      ),
     );
   }
 }
